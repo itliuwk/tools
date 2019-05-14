@@ -91,4 +91,11 @@
       }
     }
   }
+
+  @media screen and (max-width:620px){
+    .box-card {
+      display: block;
+      margin: 20px auto;
+    }
+  }
 </style>

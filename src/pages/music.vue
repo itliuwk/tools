@@ -73,7 +73,7 @@
           });
           this.musicData = res.data.Body;
           this.loading = false;
-        }).catch(err=>{
+        }).catch(err => {
           console.log(err);
         })
       },
@@ -88,6 +88,7 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+
   .music {
     text-align: center;
     margin: 100px auto;
@@ -99,6 +100,7 @@
 
     .value {
       width: 20%;
+      min-width: 200px;
     }
 
     .search {
@@ -109,4 +111,9 @@
       color: #188ae2;
     }
   }
+</style>
+
+<style>
+
+
 </style>
