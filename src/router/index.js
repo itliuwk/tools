@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import maoyan from '@/pages/maoyan'
-import music from '@/pages/music'
-import index from '@/components/index'
+
 
 Vue.use(Router);
 
@@ -11,17 +9,17 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: index
+      component: () => import('@/components/index')
     },
     {
       path: '/dy',
       name: 'dy',
-      component: maoyan
+      component: () => import('@/pages/dy')
     },
     {
       path: '/music',
       name: 'music',
-      component: music
+      component: () => import('@/pages/music')
     }
   ]
 })

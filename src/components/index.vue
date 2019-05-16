@@ -1,6 +1,7 @@
 <template>
   <div class="index">
-    <h1>随心工具集合</h1>
+    <h1>随心工具集合 </h1>
+    <p>(百度搜索：随心it,随心工具）</p>
     <div  class="box-card" v-for="(item,index) in list" :key="index">
       <el-card>
         <router-link :to="item.path">
@@ -12,6 +13,8 @@
         </router-link>
       </el-card>
     </div>
+
+    <p class="Copyright"> Copyright©2019 随心it,随心工具</p>
 
   </div>
 </template>
@@ -54,6 +57,15 @@
 
     h1 {
       text-align: center;
+    }
+    p{
+      text-align: center;
+    }
+    .Copyright{
+      position: fixed;
+      width: 100vw;
+      left: 0;
+      bottom: 0;
     }
     .title{
       font-weight: bold;
