@@ -8,7 +8,7 @@
       v-loading="loading"
       stripe
       empty-text="暂无数据,刷新页面试试"
-      style="width: 100%">
+      style="width: 100%;padding-bottom: 20px;">
       <el-table-column
         type="index">
       </el-table-column>
@@ -44,6 +44,7 @@
     <div v-if="isReload" style="text-align: center;background: #fff;">
       <el-button @click="reload()" type="text">刷新页面</el-button>
     </div>
+    <p class="Copyright"> Copyright©2019 随心it,随心工具</p>
   </div>
 
 </template>

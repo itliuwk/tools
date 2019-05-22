@@ -5,11 +5,14 @@ import element from 'element-ui'
 import Axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueJsonp from 'vue-jsonp'
+import VueClipboard from 'vue-clipboard2'
+Vue.use(VueClipboard);
 
-Vue.use(VueAxios, Axios)
+Vue.use(VueAxios, Axios);
 
 
-Vue.use(VueJsonp)
+Vue.use(VueJsonp);
+import './components/style/index.css'
 
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false;

@@ -5,7 +5,7 @@
   "author": "liuwk <1834183435@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --host 0.0.0.0 --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js"
   },
@@ -19,6 +19,7 @@
     "scss": "^0.2.4",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.4",
+    "vue-clipboard2": "^0.3.0",
     "vue-jsonp": "^0.1.8",
     "vue-router": "^3.0.1"
   },

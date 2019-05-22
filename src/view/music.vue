@@ -14,7 +14,7 @@
         <el-table
           :data="musicData"
           v-loading="loading"
-          style="width: 100%">
+          style="width: 100%;">
           <el-table-column
             prop="title"
             align="center"
@@ -38,6 +38,7 @@
         </el-table>
       </el-main>
     </el-container>
+    <p class="Copyright"> Copyright©2019 随心it,随心工具</p>
   </div>
 </template>
 

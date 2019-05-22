@@ -9,17 +9,22 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/components/index')
+      component: () => import('@/view/index')
     },
     {
       path: '/dy',
       name: 'dy',
-      component: () => import('@/pages/dy')
+      component: () => import('@/view/dy')
     },
     {
       path: '/music',
       name: 'music',
-      component: () => import('@/pages/music')
+      component: () => import('@/view/music')
+    },
+    {
+      path: '/dwz',
+      name: 'dwz',
+      component: () => import('@/view/dwz')
     }
   ]
 })

@@ -2,16 +2,18 @@
   <div class="index">
     <h1>随心工具集合 </h1>
     <p>(百度搜索：随心it,随心工具）</p>
-    <div  class="box-card" v-for="(item,index) in list" :key="index">
-      <el-card>
-        <router-link :to="item.path">
-          <div>
-            <img :src="item.src" alt="" width="70" height="70">
-            <p class="title">{{item.name}}</p>
-            <p>{{item.info}}</p>
-          </div>
-        </router-link>
-      </el-card>
+    <div class="box">
+      <div class="box-card" v-for="(item,index) in list" :key="index">
+        <el-card>
+          <router-link :to="item.path">
+            <div>
+              <img :src="item.src" alt="" width="70" height="70">
+              <p class="title">{{item.name}}</p>
+              <p>{{item.info}}</p>
+            </div>
+          </router-link>
+        </el-card>
+      </div>
     </div>
 
     <p class="Copyright"> Copyright©2019 随心it,随心工具</p>
@@ -20,8 +22,9 @@
 </template>
 
 <script>
-  import pf from'../assets/pf.png'
-  import gq from'../assets/gq.png'
+  import pf from '../assets/pf.png'
+  import gq from '../assets/gq.png'
+  import dwz from '../assets/dwz.png'
 
   export default {
     name: "index",
@@ -39,6 +42,12 @@
             path: '/music',
             info: '搜索热门歌曲，部分可下载收费音乐',
             src: gq
+          },
+          {
+            name: '短网址',
+            path: '/dwz',
+            info: '免费、稳定的在线缩短网址',
+            src: dwz
           }
         ]
       }
@@ -51,29 +60,32 @@
     background: #fff;
   }
 
+
   .index {
     padding: 20px;
-    margin-top: 50px;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    position: relative;
+
 
     h1 {
       text-align: center;
     }
-    p{
+
+    p {
       text-align: center;
     }
-    .Copyright{
-      position: fixed;
-      width: 100vw;
-      left: 0;
-      bottom: 0;
-    }
-    .title{
+
+    .title {
       font-weight: bold;
     }
-    p{
+
+    p {
       padding: 10px;
     }
   }
+
 
   .box-card {
     display: inline-block;
@@ -85,29 +97,37 @@
   a {
     text-decoration: none;
     color: #333;
-    div{
+
+    div {
       text-align: center;
-      img{
+
+      img {
         border-radius: 10px;
       }
     }
   }
 
-  .box-card:hover{
-    transform: translate3d(0,-.3rem,0);
+  .box-card:hover {
+    transform: translate3d(0, -.3rem, 0);
     transition: all .3s ease;
-    .el-card{
-      background-color: #4293f4!important;
-      p{
+
+    .el-card {
+      background-color: #4293f4 !important;
+
+      p {
         color: #fff;
       }
     }
   }
 
-  @media screen and (max-width:620px){
+  @media screen and (max-width: 620px) {
     .box-card {
       display: block;
       margin: 20px auto;
+    }
+
+    .box .box-card:last-child{
+      margin-bottom: 50px;
     }
   }
 </style>
