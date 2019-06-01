@@ -35,6 +35,17 @@
                  :href="musicData.row.url">下载</a>
             </template>
           </el-table-column>
+          <el-table-column
+            align="center"
+            label="信息">
+            <template slot-scope="musicData">
+              <span style="margin-right: 20px;">{{musicData.row.info}}</span>
+              <el-button  type="primary" size="mini"
+                         v-clipboard:copy="musicData.row.info"
+                         v-clipboard:success="onCopy"
+                         v-clipboard:error="onError">复制</el-button>
+            </template>
+          </el-table-column>
         </el-table>
       </el-main>
     </el-container>
@@ -74,6 +85,7 @@
             } else {
               item.download = false
             }
+            item.info = item.author +' - '+ item.title;
             return item;
           });
           this.musicData = res.data.Body;
@@ -87,6 +99,21 @@
       },
       searchEnterFun() {
         this.get();
+      },
+
+      // 复制成功
+      onCopy(e){
+        this.$message({
+          message: '复制成功 \(^o^)/',
+          type: 'success'
+        });
+      },
+      // 复制失败
+      onError(e){
+        this.$message({
+          message: '复制失败 o(╥﹏╥)o',
+          type: 'warning'
+        });
       }
     }
   }
