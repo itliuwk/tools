@@ -44,7 +44,7 @@
     <div v-if="isReload" style="text-align: center;background: #fff;">
       <el-button @click="reload()" type="text">刷新页面</el-button>
     </div>
-    <p class="Copyright"> Copyright©2019 随心it,随心工具</p>
+    <Copyright></Copyright>
   </div>
 
 </template>
@@ -52,6 +52,7 @@
 <script>
   import Axios from 'axios'
   import jsonp from '../utils/jsonp';
+  import Copyright from './copyright'
 
   export default {
     data() {
@@ -62,6 +63,9 @@
         isReload: false,
         count: 0
       }
+    },
+    components: {
+      Copyright
     },
     mounted() {
       this.getList();

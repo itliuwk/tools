@@ -26,16 +26,20 @@
                  v-clipboard:success="onCopy"
                  v-clipboard:error="onError">点我复制</el-button>
     </div>
-    <p class="Copyright"> Copyright©2019 随心it,随心工具</p>
+    <Copyright></Copyright>
   </div>
 </template>
 
 <script>
   import Axios from 'axios'
+  import Copyright from './copyright'
 
   export default {
     name: "music",
     mounted() {
+    },
+    components:{
+      Copyright
     },
     data() {
       return {

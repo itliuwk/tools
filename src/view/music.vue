@@ -38,15 +38,19 @@
         </el-table>
       </el-main>
     </el-container>
-    <p class="Copyright"> Copyright©2019 随心it,随心工具</p>
+    <Copyright></Copyright>
   </div>
 </template>
 
 <script>
   import Axios from 'axios'
+  import Copyright from './copyright'
 
   export default {
     name: "music",
+    components: {
+      Copyright
+    },
     mounted() {
 
     },

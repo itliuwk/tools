@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <h1>随心工具集合 </h1>
-    <p>(百度搜索：随心it,随心工具）</p>
+    <p>(百度搜索：随心it,随心工具,刘伟坤）</p>
     <div class="box">
       <div class="box-card" v-for="(item,index) in list" :key="index">
         <el-card>
@@ -16,8 +16,7 @@
       </div>
     </div>
 
-    <p class="Copyright"> Copyright©2019 随心it,随心工具</p>
-
+    <Copyright></Copyright>
   </div>
 </template>
 
@@ -25,9 +24,13 @@
   import pf from '../assets/pf.png'
   import gq from '../assets/gq.png'
   import dwz from '../assets/dwz.png'
+  import Copyright from './copyright'
 
   export default {
     name: "index",
+    components: {
+      Copyright
+    },
     data() {
       return {
         list: [
@@ -46,7 +49,7 @@
           {
             name: '短网址',
             path: '/dwz',
-            info: '免费、稳定的在线缩短网址',
+            info: '免费、稳定有效的在线缩短网址',
             src: dwz
           }
         ]
@@ -126,7 +129,7 @@
       margin: 20px auto;
     }
 
-    .box .box-card:last-child{
+    .box .box-card:last-child {
       margin-bottom: 50px;
     }
   }
