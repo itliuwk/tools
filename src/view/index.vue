@@ -5,13 +5,20 @@
     <div class="box">
       <div class="box-card" v-for="(item,index) in list" :key="index">
         <el-card>
-          <router-link :to="item.path">
+          <router-link v-if="!item.target" tag="a" v :to="item.path">
             <div>
               <img :src="item.src" alt="" width="70" height="70">
               <p class="title">{{item.name}}</p>
               <p>{{item.info}}</p>
             </div>
           </router-link>
+          <a v-else :href="item.path" target="_blank">
+            <div>
+              <img :src="item.src" alt="" width="70" height="70">
+              <p class="title">{{item.name}}</p>
+              <p>{{item.info}}</p>
+            </div>
+          </a>
         </el-card>
       </div>
     </div>
@@ -24,6 +31,8 @@
   import pf from '../assets/pf.png'
   import gq from '../assets/gq.png'
   import dwz from '../assets/dwz.png'
+  import bk from '../assets/favicon.png'
+  import zqzb from '../assets/zqzb.jpg'
   import Copyright from './copyright'
 
   export default {
@@ -51,6 +60,21 @@
             path: '/dwz',
             info: '免费、稳定有效的在线缩短网址',
             src: dwz
+          },
+          {
+            name: '个人博客',
+            path: 'http://blog.sxitw.cn/',
+            info: '刘伟坤 - 小前端前往后端的路上的博客',
+            src: bk,
+            target:'_blank'
+
+          },
+          {
+            name: '杂七杂八',
+            path: 'http://sxitw.cn/xyz',
+            info: '我也不知道有啥东西，没什么好介绍的',
+            src: zqzb,
+            target:'_blank'
           }
         ]
       }

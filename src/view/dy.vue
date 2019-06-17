@@ -57,11 +57,12 @@
   export default {
     data() {
       return {
-        data: {},
+        data: [],
+        cacheData: [],
         timer: null,
         loading: false,
         isReload: false,
-        count: 0
+        count: 0,
       }
     },
     components: {
@@ -69,14 +70,17 @@
     },
     mounted() {
       this.getList();
-      setInterval(() => {
+      this.timer = setInterval(() => {
         this.getList();
-      }, 5000);
+      }, 20000);
 
+    },
+    destroyed() {
+      clearInterval(this.timer);
     },
     methods: {
       getList() {
-
+        this.data = this.cacheData;
         if (this.count >= 1) {
           this.loading = false;
         } else {
@@ -86,6 +90,7 @@
         let url = 'https://api.shenjian.io/promovie/piaofang?appid=6d2e16b89ef4bbff34b7f69b226c4aa5&date=' + this.filterDate();
         jsonp(url, '', 'jsonpCallBack').then((response) => {
           this.data = response.data;
+          this.cacheData = response.data;
           this.loading = false;
           if (!response.data.length) {
             this.isReload = true;
