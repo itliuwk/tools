@@ -68,13 +68,6 @@
             src: bk,
             target:'_blank'
 
-          },
-          {
-            name: '杂七杂八',
-            path: 'http://sxitw.cn/xyz',
-            info: '我也不知道有啥东西，没什么好介绍的',
-            src: zqzb,
-            target:'_blank'
           }
         ]
       }
