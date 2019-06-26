@@ -14,6 +14,8 @@
           style="width: 140px"
           v-model="expireDate"
           type="date"
+          value-format="yyyy-MM-dd"
+          :picker-options="pickerOptions"
           placeholder="有效期">
         </el-date-picker>
         <el-button class="search" type="primary" @click="search">生成</el-button>
@@ -24,7 +26,8 @@
       <el-button class="search" type="success" size="small"
                  v-clipboard:copy="dwzValue"
                  v-clipboard:success="onCopy"
-                 v-clipboard:error="onError">点我复制</el-button>
+                 v-clipboard:error="onError">点我复制
+      </el-button>
     </div>
     <Copyright></Copyright>
   </div>
@@ -38,7 +41,7 @@
     name: "music",
     mounted() {
     },
-    components:{
+    components: {
       Copyright
     },
     data() {
@@ -47,26 +50,44 @@
         dwzValue: '',
         loading: false,
         expireDate: '',
-        isShow: false
+        isShow: false,
+        pickerOptions: {
+          disabledDate(time) {
+            return time.getTime() < Date.now() - 8.64e7;
+          },
+        }
       }
     },
     methods: {
       get() {
+
         let dwzIptValue = this.dwzIptValue;
-          if (!dwzIptValue){
-            this.$message({
-              message: '我警告你喔(￣ε(#￣)☆╰╮(￣▽￣///)，网址必填',
-              type: 'warning'
-            });
-            return
-          }
+        let expireDate = this.expireDate;
+        if (!dwzIptValue) {
+          this.$message({
+            message: '我警告你喔(￣ε(#￣)☆╰╮(￣▽￣///)，网址必填',
+            type: 'warning'
+          });
+          return
+        }
+
+        if (!expireDate) {
+          this.$message({
+            message: '我警告你喔(￣ε(#￣)☆╰╮(￣▽￣///)，日期必填',
+            type: 'warning'
+          });
+          return
+        }
         this.loading = true;
-        let url = 'http://api.suolink.cn/api.php?format=json&url=' + this.dwzIptValue + '&key=5ce4ad4c8e676d21eb3f63ae@d18650ec15830c6da1bfa4f29f04783c&expireDate=' + this.expireDate;
+        let url = 'http://api.suolink.cn/api.php?format=jsonp&key=5ce4ad4c8e676d21eb3f63ae@d18650ec15830c6da1bfa4f29f04783c&url=' + encodeURI(this.dwzIptValue) + '&expireDate=' + expireDate;
         Axios({
           url: url
         }).then(res => {
+          let str = res.data;
+          str = str.substr(1,str.length - 2);
+          let data = JSON.parse(str);
           this.isShow = true;
-          this.dwzValue = res.data.url;
+          this.dwzValue = data.url;
 
         }).catch(err => {
           console.log(err);
@@ -79,14 +100,14 @@
         this.get();
       },
       // 复制成功
-      onCopy(e){
+      onCopy(e) {
         this.$message({
           message: '复制成功 \(^o^)/',
           type: 'success'
         });
       },
       // 复制失败
-      onError(e){
+      onError(e) {
         this.$message({
           message: '复制失败 o(╥﹏╥)o',
           type: 'warning'
