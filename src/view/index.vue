@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="index">
     <h1>随心工具集合 </h1>
     <p>(百度搜索：随心it,随心工具,刘伟坤）</p>
@@ -63,7 +63,7 @@
           },
           {
             name: '个人博客',
-            path: 'http://blog.sxitw.cn/',
+            path: 'https://itliuwk.github.io/',
             info: '刘伟坤 - 小前端前往后端的路上的博客',
             src: bk,
             target:'_blank'
