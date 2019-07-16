@@ -6,6 +6,7 @@
         <el-input
           placeholder="请输入歌曲名称或歌手"
           v-model="value"
+          @input="inputChange"
           @keyup.enter.native="searchEnterFun"
           class="value"
           clearable>
@@ -40,10 +41,11 @@
             label="信息">
             <template slot-scope="musicData">
               <span style="margin-right: 20px;">{{musicData.row.info}}</span>
-              <el-button  type="primary" size="mini"
+              <el-button type="primary" size="mini"
                          v-clipboard:copy="musicData.row.info"
                          v-clipboard:success="onCopy"
-                         v-clipboard:error="onError">复制</el-button>
+                         v-clipboard:error="onError">复制
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -74,6 +76,9 @@
     },
     methods: {
       get() {
+        if (!this.value) {
+          return false;
+        }
         this.loading = true;
         let url = 'https://api.mlwei.com/music/api/?key=523077333&cache=1&type=so&id=' + encodeURIComponent(this.value) + '&size=hq';
         Axios({
@@ -85,7 +90,7 @@
             } else {
               item.download = false
             }
-            item.info = item.author +' - '+ item.title;
+            item.info = item.author + ' - ' + item.title;
             return item;
           });
           this.musicData = res.data.Body;
@@ -93,6 +98,14 @@
         }).catch(err => {
           console.log(err);
         })
+      },
+      inputChange(val) {
+        let timer = null;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          this.get();
+          clearTimeout(timer);
+        }, 1000);
       },
       search() {
         this.get();
@@ -102,14 +115,14 @@
       },
 
       // 复制成功
-      onCopy(e){
+      onCopy(e) {
         this.$message({
           message: '复制成功 \(^o^)/',
           type: 'success'
         });
       },
       // 复制失败
-      onError(e){
+      onError(e) {
         this.$message({
           message: '复制失败 o(╥﹏╥)o',
           type: 'warning'
