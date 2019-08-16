@@ -40,6 +40,7 @@
   export default {
     name: "music",
     mounted() {
+
     },
     components: {
       Copyright
@@ -84,7 +85,7 @@
           url: url
         }).then(res => {
           let str = res.data;
-          str = str.substr(1,str.length - 2);
+          str = str.substr(1, str.length - 2);
           let data = JSON.parse(str);
           this.isShow = true;
           this.dwzValue = data.url;
